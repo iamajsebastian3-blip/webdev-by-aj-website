@@ -881,60 +881,156 @@
     }
     .portfolio__browser-body {
       aspect-ratio: 16/9;
-      background: radial-gradient(ellipse at center, rgba(94, 23, 235, 0.15) 0%, var(--neutral-800) 70%);
+      background: #050510;
+      background-image:
+        radial-gradient(ellipse at 30% 50%, rgba(94, 23, 235, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 40%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(245, 166, 35, 0.06) 0%, transparent 40%);
       display: flex; align-items: center; justify-content: center;
       padding: 2rem;
-      text-align: center;
       position: relative;
       overflow: hidden;
     }
+    /* Particle dust */
+    .portfolio__particles {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .portfolio__particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      animation: particleFloat linear infinite;
+    }
+    .portfolio__particle:nth-child(1) { top: 20%; left: 15%; animation-duration: 12s; width: 3px; height: 3px; opacity: 0.6; }
+    .portfolio__particle:nth-child(2) { top: 60%; left: 80%; animation-duration: 18s; animation-delay: -3s; }
+    .portfolio__particle:nth-child(3) { top: 40%; left: 25%; animation-duration: 15s; animation-delay: -7s; opacity: 0.3; }
+    .portfolio__particle:nth-child(4) { top: 75%; left: 60%; animation-duration: 20s; animation-delay: -2s; width: 3px; height: 3px; }
+    .portfolio__particle:nth-child(5) { top: 30%; left: 70%; animation-duration: 14s; animation-delay: -5s; opacity: 0.5; }
+    .portfolio__particle:nth-child(6) { top: 85%; left: 40%; animation-duration: 16s; animation-delay: -9s; }
+    .portfolio__particle:nth-child(7) { top: 15%; left: 55%; animation-duration: 22s; animation-delay: -1s; width: 1px; height: 1px; }
+    .portfolio__particle:nth-child(8) { top: 50%; left: 90%; animation-duration: 13s; animation-delay: -6s; opacity: 0.4; }
+    @keyframes particleFloat {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-80px) translateX(30px); opacity: 0; }
+    }
+
+    /* Crystal container */
     .portfolio__crystal-wrap {
       position: relative;
       z-index: 1;
       animation: floatCrystal 6s ease-in-out infinite;
+      filter: drop-shadow(0 0 60px rgba(94, 23, 235, 0.5)) drop-shadow(0 0 120px rgba(94, 23, 235, 0.2));
     }
     .portfolio__crystal-shape {
-      width: 280px; height: 280px;
+      width: 300px; height: 300px;
       position: relative;
       margin: 0 auto;
     }
-    .portfolio__crystal-orb {
+
+    /* Main crystal body — layered glass facets */
+    .crystal-facet {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: morphOrb 8s ease-in-out infinite;
+      animation: crystalRotate 12s ease-in-out infinite;
     }
-    .portfolio__crystal-orb:nth-child(1) {
-      width: 220px; height: 220px;
-      top: 20px; left: 30px;
-      background: linear-gradient(135deg, rgba(94, 23, 235, 0.7), rgba(155, 89, 247, 0.5));
+    /* Large outer shell */
+    .crystal-facet:nth-child(1) {
+      width: 240px; height: 240px;
+      top: 30px; left: 30px;
+      background: linear-gradient(135deg,
+        rgba(94, 23, 235, 0.6) 0%,
+        rgba(59, 130, 246, 0.3) 30%,
+        rgba(155, 89, 247, 0.5) 60%,
+        rgba(94, 23, 235, 0.4) 100%
+      );
+      border-radius: 62% 38% 46% 54% / 50% 62% 38% 50%;
+      border: 1px solid rgba(155, 89, 247, 0.3);
       animation-delay: 0s;
     }
-    .portfolio__crystal-orb:nth-child(2) {
+    /* Inner glow layer */
+    .crystal-facet:nth-child(2) {
       width: 200px; height: 200px;
-      top: 40px; left: 60px;
-      background: linear-gradient(225deg, rgba(59, 130, 246, 0.5), rgba(94, 23, 235, 0.6));
-      animation-delay: -2s;
+      top: 55px; left: 55px;
+      background: linear-gradient(225deg,
+        rgba(155, 89, 247, 0.5) 0%,
+        rgba(94, 23, 235, 0.7) 40%,
+        rgba(59, 130, 246, 0.4) 70%,
+        rgba(245, 166, 35, 0.15) 100%
+      );
+      border-radius: 44% 56% 58% 42% / 56% 44% 56% 44%;
       mix-blend-mode: screen;
+      animation-delay: -3s;
+      animation-direction: reverse;
     }
-    .portfolio__crystal-orb:nth-child(3) {
-      width: 180px; height: 180px;
-      top: 10px; left: 50px;
-      background: linear-gradient(45deg, rgba(245, 166, 35, 0.3), rgba(155, 89, 247, 0.4));
-      animation-delay: -4s;
+    /* Orange/gold accent ribbon */
+    .crystal-facet:nth-child(3) {
+      width: 220px; height: 160px;
+      top: 70px; left: 40px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(245, 166, 35, 0.2) 30%,
+        rgba(255, 120, 50, 0.15) 50%,
+        rgba(245, 166, 35, 0.1) 70%,
+        transparent 100%
+      );
+      border-radius: 50% 50% 42% 58% / 40% 60% 40% 60%;
       mix-blend-mode: screen;
+      animation-delay: -6s;
     }
-    .portfolio__crystal-orb:nth-child(4) {
+    /* Specular highlight (top-left) */
+    .crystal-facet:nth-child(4) {
+      width: 120px; height: 80px;
+      top: 50px; left: 60px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.05) 50%,
+        transparent 100%
+      );
+      border-radius: 60% 40% 50% 50% / 55% 60% 40% 45%;
+      animation-delay: -1.5s;
+      filter: blur(2px);
+    }
+    /* Deep inner core */
+    .crystal-facet:nth-child(5) {
       width: 100px; height: 100px;
-      top: 80px; left: 90px;
-      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
-      animation-delay: -1s;
+      top: 100px; left: 100px;
+      background: radial-gradient(circle,
+        rgba(155, 89, 247, 0.8) 0%,
+        rgba(94, 23, 235, 0.5) 40%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      animation-delay: -4s;
+      animation-duration: 8s;
     }
-    @keyframes morphOrb {
-      0%, 100% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; transform: rotate(0deg) scale(1); }
-      25% { border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%; transform: rotate(90deg) scale(1.05); }
-      50% { border-radius: 40% 50% 60% 50% / 60% 40% 50% 50%; transform: rotate(180deg) scale(0.95); }
-      75% { border-radius: 50% 40% 50% 60% / 50% 50% 40% 60%; transform: rotate(270deg) scale(1.03); }
+    /* Edge refraction — thin bright line */
+    .crystal-facet:nth-child(6) {
+      width: 180px; height: 180px;
+      top: 60px; left: 60px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 52% 48% 44% 56% / 48% 52% 48% 52%;
+      animation-delay: -2s;
+      animation-direction: reverse;
+    }
+
+    @keyframes crystalRotate {
+      0%, 100% {
+        border-radius: 62% 38% 46% 54% / 50% 62% 38% 50%;
+        transform: rotate(0deg) scale(1);
+      }
+      33% {
+        border-radius: 46% 54% 62% 38% / 38% 50% 50% 62%;
+        transform: rotate(5deg) scale(1.03);
+      }
+      66% {
+        border-radius: 54% 46% 38% 62% / 62% 38% 62% 38%;
+        transform: rotate(-3deg) scale(0.97);
+      }
     }
     @keyframes floatCrystal {
       0%, 100% { transform: translateY(0); }
@@ -1712,12 +1808,24 @@
               <div class="portfolio__browser-url">WEBDEV BY AJ</div>
             </div>
             <div class="portfolio__browser-body">
+              <div class="portfolio__particles">
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+                <div class="portfolio__particle"></div>
+              </div>
               <div class="portfolio__crystal-wrap">
                 <div class="portfolio__crystal-shape">
-                  <div class="portfolio__crystal-orb"></div>
-                  <div class="portfolio__crystal-orb"></div>
-                  <div class="portfolio__crystal-orb"></div>
-                  <div class="portfolio__crystal-orb"></div>
+                  <div class="crystal-facet"></div>
+                  <div class="crystal-facet"></div>
+                  <div class="crystal-facet"></div>
+                  <div class="crystal-facet"></div>
+                  <div class="crystal-facet"></div>
+                  <div class="crystal-facet"></div>
                 </div>
               </div>
             </div>
