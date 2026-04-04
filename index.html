@@ -276,15 +276,39 @@
       padding: 8rem 0 4rem;
       overflow: hidden;
     }
+    .hero__video-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero__video-bg iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 180%; height: 180%;
+      transform: translate(-50%, -50%);
+      border: none;
+    }
+    .hero__video-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 20, 0.88) 0%,
+        rgba(94, 23, 235, 0.15) 50%,
+        rgba(7, 7, 20, 0.92) 100%
+      );
+      z-index: 0;
+    }
     .hero__glow-1 { width: 600px; height: 600px; top: -100px; right: -150px; }
     .hero__glow-2 { width: 500px; height: 500px; bottom: -150px; left: -200px; }
     .hero__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
       position: relative;
       z-index: 1;
+      max-width: 700px;
     }
     .hero__tag {
       display: inline-block;
@@ -1110,7 +1134,7 @@
        RESPONSIVE
        ============================ */
     @media (max-width: 1024px) {
-      .hero__inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero__inner { max-width: 100%; }
       .services__grid { grid-template-columns: 1fr; }
       .calculator__grid { grid-template-columns: 1fr; }
       .calculator__breakdown { grid-template-columns: 1fr; }
@@ -1169,50 +1193,28 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
+      <!-- YouTube Video Background -->
+      <div class="hero__video-bg">
+        <iframe
+          id="heroVideo"
+          src="https://www.youtube.com/embed/AZdlKvz5h0M?autoplay=1&mute=1&loop=1&playlist=AZdlKvz5h0M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=0&end=15"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="hero__video-overlay"></div>
       <div class="glow glow--purple hero__glow-1"></div>
       <div class="glow glow--accent hero__glow-2"></div>
       <div class="container hero__inner">
-        <div class="hero__text">
-          <span class="hero__tag">You're here because you're ready</span>
-          <h1 class="hero__title">
-            A Website That Doesn't Just Look Good —<br>
-            <em>It Brings You Customers.</em>
-          </h1>
-          <p class="hero__desc">Scroll through real builds designed to turn visitors into bookings, inquiries, and revenue.</p>
-          <div class="hero__actions">
-            <a href="#pricing" class="btn btn--primary">View Packages</a>
-            <a href="#portfolio" class="btn btn--ghost">See Our Work</a>
-          </div>
-        </div>
-        <div class="hero__card reveal">
-          <div class="profile-card">
-            <div class="profile-card__header">
-              <div class="profile-card__avatar">AJ</div>
-              <div>
-                <div class="profile-card__name">AJ — Allen Bactad</div>
-                <div class="profile-card__role">Growth Systems Consultant</div>
-              </div>
-            </div>
-            <div class="profile-card__tags">
-              <span class="profile-card__tag">Web Developer</span>
-              <span class="profile-card__tag">Funnel Strategist</span>
-              <span class="profile-card__tag">CRM Automation</span>
-            </div>
-            <div class="profile-card__stats">
-              <div class="profile-card__stat">
-                <div class="profile-card__stat-value">96%</div>
-                <div class="profile-card__stat-label">Client Satisfaction</div>
-              </div>
-              <div class="profile-card__stat">
-                <div class="profile-card__stat-value">2.8x</div>
-                <div class="profile-card__stat-label">Avg Conversion Lift</div>
-              </div>
-              <div class="profile-card__stat">
-                <div class="profile-card__stat-value">50+</div>
-                <div class="profile-card__stat-label">Sites &amp; Funnels Built</div>
-              </div>
-            </div>
-          </div>
+        <span class="hero__tag">You're here because you're ready</span>
+        <h1 class="hero__title">
+          A Website That Doesn't Just Look Good —<br>
+          <em>It Brings You Customers.</em>
+        </h1>
+        <p class="hero__desc">Scroll through real builds designed to turn visitors into bookings, inquiries, and revenue.</p>
+        <div class="hero__actions">
+          <a href="#pricing" class="btn btn--primary">View Packages</a>
+          <a href="gallery.html" class="btn btn--ghost">See Our Work</a>
         </div>
       </div>
     </section>
