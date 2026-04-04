@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://www.youtube.com/iframe_api"></script>
   <style>
     /* ============================
        CSS RESET + CUSTOM PROPERTIES
@@ -274,131 +273,196 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 8rem 0 4rem;
+      padding: 7rem 0 5rem;
       overflow: hidden;
     }
-    .hero__video-bg {
+    .hero__video-wrap {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 0;
+      overflow: hidden;
+    }
+    .hero__video-wrap video {
+      position: absolute;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      opacity: 0.35;
+    }
+    .hero__overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to right,
+        rgba(7,7,26,0.95) 0%,
+        rgba(7,7,26,0.85) 35%,
+        rgba(7,7,26,0.5) 65%,
+        rgba(7,7,26,0.2) 100%
+      );
+      z-index: 1;
+    }
+    .hero__glow-1 {
+      width: 600px; height: 600px;
+      top: -200px; right: -100px;
+      background: rgba(94, 23, 235, 0.2) !important;
+    }
+    .hero__glow-2 {
+      width: 500px; height: 500px;
+      bottom: -250px; left: -150px;
+      background: rgba(245, 166, 35, 0.06) !important;
+    }
+    .hero__icons {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
       pointer-events: none;
       overflow: hidden;
     }
-    .hero__video-bg iframe {
+    .hero__icon {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 180%; height: 180%;
-      transform: translate(-50%, -50%);
-      border: none;
+      font-size: 1.5rem;
+      opacity: 0.08;
+      animation: iconDrift 20s linear infinite;
     }
-    .hero__video-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(
-        135deg,
-        rgba(7, 7, 20, 0.88) 0%,
-        rgba(94, 23, 235, 0.15) 50%,
-        rgba(7, 7, 20, 0.92) 100%
-      );
-      z-index: 0;
+    .hero__icon:nth-child(odd) { animation-direction: reverse; }
+    .hero__icon:nth-child(1) { top: 15%; left: 70%; animation-duration: 25s; font-size: 2rem; }
+    .hero__icon:nth-child(2) { top: 35%; left: 85%; animation-duration: 18s; }
+    .hero__icon:nth-child(3) { top: 60%; left: 75%; animation-duration: 30s; font-size: 1.75rem; }
+    .hero__icon:nth-child(4) { top: 20%; left: 55%; animation-duration: 22s; }
+    .hero__icon:nth-child(5) { top: 75%; left: 65%; animation-duration: 28s; }
+    .hero__icon:nth-child(6) { top: 45%; left: 92%; animation-duration: 15s; font-size: 2rem; }
+    .hero__icon:nth-child(7) { top: 10%; left: 80%; animation-duration: 35s; }
+    .hero__icon:nth-child(8) { top: 85%; left: 88%; animation-duration: 20s; }
+    .hero__icon:nth-child(9) { top: 50%; left: 60%; animation-duration: 26s; font-size: 1.75rem; }
+    .hero__icon:nth-child(10) { top: 30%; left: 95%; animation-duration: 19s; }
+    @keyframes iconDrift {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+      50% { transform: translateY(-40px) rotate(10deg); opacity: 0.12; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
     }
-    .hero__glow-1 { width: 600px; height: 600px; top: -100px; right: -150px; }
-    .hero__glow-2 { width: 500px; height: 500px; bottom: -150px; left: -200px; }
     .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
       position: relative;
-      z-index: 1;
-      max-width: 700px;
+      z-index: 2;
     }
-    .hero__tag {
-      display: inline-block;
-      font-size: var(--text-xs);
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--color-bg);
-      background: var(--color-accent);
+      color: var(--color-accent);
+      background: var(--color-accent-dim);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
       margin-bottom: 1.5rem;
-      padding: 0.5rem 1.25rem;
-      border-radius: var(--radius-sm);
+      animation: fadeInUp 0.6s ease both;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      display: inline-block;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
     }
     .hero__title {
       font-family: var(--font-display);
-      font-weight: var(--font-weight-display);
-      font-size: var(--text-hero);
-      line-height: 1.1;
-      letter-spacing: var(--letter-spacing-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
       margin-bottom: 1.5rem;
+      animation: fadeInUp 0.6s ease 0.1s both;
     }
-    .hero__title em {
-      font-style: normal;
-      color: var(--color-accent);
+    .hero__title .highlight {
+      background: linear-gradient(135deg, var(--color-accent), #9b59f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero__desc {
+      font-size: 1.125rem;
       color: var(--color-text-secondary);
-      font-size: var(--text-lg);
-      margin-bottom: 2rem;
+      line-height: 1.7;
       max-width: 480px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.6s ease 0.2s both;
     }
-    .hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero__actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    /* Profile Card */
-    .profile-card {
+    /* Floating Cards */
+    .hero__visuals { position: relative; height: 500px; }
+    .floating-card {
+      position: absolute;
+      background: rgba(94, 23, 235, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      animation: floatCard 5s ease-in-out infinite;
+    }
+    .floating-card--1 { top: 5%; right: 0; animation-delay: 0s; }
+    .floating-card--2 { top: 40%; right: 15%; animation-delay: 1.5s; }
+    .floating-card--3 { bottom: 5%; right: 5%; animation-delay: 3s; }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .floating-card__header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .floating-card__icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(94, 23, 235, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.125rem;
+    }
+    .floating-card__label { font-weight: 600; font-size: var(--text-sm); }
+    .floating-card__sublabel { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .floating-card__stat { font-weight: 800; font-size: 1.75rem; color: var(--color-accent); }
+    .floating-card__stat-sub { font-size: var(--text-xs); color: var(--color-text-secondary); }
+    .floating-card__bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 0.5rem; }
+    .floating-card__bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--color-purple), var(--color-accent)); }
+
+    /* Hero Stats Bar */
+    .hero-stats { position: relative; z-index: 2; padding: 0 1.5rem; margin-top: -2rem; }
+    .hero-stats__inner {
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1.5rem 2rem;
       background: var(--glass-bg);
       backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
+      border-radius: 16px;
       box-shadow: var(--glass-shadow);
     }
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #5e17eb, #3b82f6);
-    }
-    .profile-card__header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .profile-card__avatar {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #5e17eb, #9b59f7);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: var(--text-xl);
-      color: #ffffff;
-    }
-    .profile-card__name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); }
-    .profile-card__role { font-size: var(--text-sm); color: var(--color-accent); }
-    .profile-card__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
-    .profile-card__tag {
-      font-size: var(--text-xs);
-      padding: 0.35rem 0.75rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--color-border);
-      border-radius: 100px;
-      color: var(--color-text-secondary);
-    }
-    .profile-card__stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      border-top: 1px solid var(--color-border);
-      padding-top: 1.5rem;
-    }
-    .profile-card__stat { text-align: center; }
-    .profile-card__stat-value {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: var(--text-xl);
-      color: var(--color-accent);
-    }
-    .profile-card__stat-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.25rem; }
+    .hero-stat { text-align: center; }
+    .hero-stat__value { font-weight: 800; font-size: 1.5rem; color: var(--color-accent); }
+    .hero-stat__label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 0.15rem; }
 
     /* ============================
        INDUSTRIES BAR
@@ -1135,7 +1199,9 @@
        RESPONSIVE
        ============================ */
     @media (max-width: 1024px) {
-      .hero__inner { max-width: 100%; }
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__visuals { display: none; }
+      .hero-stats__inner { flex-wrap: wrap; gap: 1.5rem; }
       .services__grid { grid-template-columns: 1fr; }
       .calculator__grid { grid-template-columns: 1fr; }
       .calculator__breakdown { grid-template-columns: 1fr; }
@@ -1194,31 +1260,91 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-      <!-- YouTube Video Background -->
-      <div class="hero__video-bg">
-        <iframe
-          id="heroVideo"
-          src="https://www.youtube.com/embed/AZdlKvz5h0M?autoplay=1&mute=1&loop=1&playlist=AZdlKvz5h0M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=74&end=90&vq=hd1080"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        ></iframe>
+      <div class="hero__video-wrap">
+        <video autoplay muted loop playsinline>
+          <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-keyboard-5765/1080p.mp4" type="video/mp4" />
+        </video>
       </div>
-      <div class="hero__video-overlay"></div>
+      <div class="hero__overlay"></div>
       <div class="glow glow--purple hero__glow-1"></div>
       <div class="glow glow--accent hero__glow-2"></div>
+      <div class="hero__icons">
+        <span class="hero__icon">🌐</span>
+        <span class="hero__icon">📈</span>
+        <span class="hero__icon">⚡</span>
+        <span class="hero__icon">🎯</span>
+        <span class="hero__icon">💻</span>
+        <span class="hero__icon">🔗</span>
+        <span class="hero__icon">📱</span>
+        <span class="hero__icon">🚀</span>
+        <span class="hero__icon">💰</span>
+        <span class="hero__icon">✨</span>
+      </div>
       <div class="container hero__inner">
-        <span class="hero__tag">You're here because you're ready</span>
-        <h1 class="hero__title">
-          A Website That Doesn't Just Look Good —<br>
-          <em>It Brings You Customers.</em>
-        </h1>
-        <p class="hero__desc">Scroll through real builds designed to turn visitors into bookings, inquiries, and revenue.</p>
-        <div class="hero__actions">
-          <a href="#pricing" class="btn btn--primary">View Packages</a>
-          <a href="gallery.html" class="btn btn--ghost">See Our Work</a>
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="pulse-dot"></span>
+            Websites &amp; Funnels That Convert
+          </div>
+          <h1 class="hero__title">
+            We Build Websites That<br>
+            <span class="highlight">Turn Visitors Into Revenue.</span>
+          </h1>
+          <p class="hero__desc">Premium websites, high-converting funnels, and automation systems engineered to capture leads and drive bookings — not just look pretty.</p>
+          <div class="hero__actions">
+            <a href="#pricing" class="btn btn--primary">View Packages →</a>
+            <a href="gallery.html" class="btn btn--ghost">See Our Work</a>
+          </div>
+        </div>
+        <div class="hero__visuals">
+          <div class="floating-card floating-card--1">
+            <div class="floating-card__header">
+              <div class="floating-card__icon">📊</div>
+              <div>
+                <div class="floating-card__label">Conversion Rate</div>
+                <div class="floating-card__sublabel">Last 30 days</div>
+              </div>
+            </div>
+            <div class="floating-card__stat">+340%</div>
+            <div class="floating-card__stat-sub">vs. previous period</div>
+            <div class="floating-card__bar"><div class="floating-card__bar-fill" style="width: 78%"></div></div>
+          </div>
+          <div class="floating-card floating-card--2">
+            <div class="floating-card__header">
+              <div class="floating-card__icon">🌐</div>
+              <div>
+                <div class="floating-card__label">Website Launched</div>
+                <div class="floating-card__sublabel">Luxe Resort &amp; Spa</div>
+              </div>
+            </div>
+            <div class="floating-card__stat">Live ✓</div>
+            <div class="floating-card__stat-sub">Mobile optimized · 98 PageSpeed</div>
+          </div>
+          <div class="floating-card floating-card--3">
+            <div class="floating-card__header">
+              <div class="floating-card__icon">💰</div>
+              <div>
+                <div class="floating-card__label">Revenue Generated</div>
+                <div class="floating-card__sublabel">Client funnel system</div>
+              </div>
+            </div>
+            <div class="floating-card__stat">₱2.4M</div>
+            <div class="floating-card__stat-sub">First 6 months</div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Hero Stats Bar -->
+    <div class="hero-stats">
+      <div class="hero-stats__inner">
+        <div class="hero-stat"><div class="hero-stat__value">96%</div><div class="hero-stat__label">Client Satisfaction</div></div>
+        <div class="hero-stat"><div class="hero-stat__value">2.8x</div><div class="hero-stat__label">Avg Conversion Lift</div></div>
+        <div class="hero-stat"><div class="hero-stat__value">50+</div><div class="hero-stat__label">Sites &amp; Funnels Built</div></div>
+        <div class="hero-stat"><div class="hero-stat__value">100%</div><div class="hero-stat__label">Custom Built</div></div>
+        <div class="hero-stat"><div class="hero-stat__value">5+</div><div class="hero-stat__label">Years Building</div></div>
+      </div>
+    </div>
 
     <!-- INDUSTRIES -->
     <section class="industries">
@@ -1733,32 +1859,6 @@
   </footer>
 
   <script>
-    // YouTube IFrame API — force HD quality + loop 1:14–1:30
-    let heroPlayer;
-    function onYouTubeIframeAPIReady() {
-      heroPlayer = new YT.Player('heroVideo', {
-        events: {
-          onReady: (e) => {
-            e.target.setPlaybackQuality('hd1080');
-          },
-          onStateChange: (e) => {
-            // Loop back to 1:14 when reaching 1:30
-            if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED) {
-              e.target.seekTo(74);
-              e.target.playVideo();
-            }
-          }
-        }
-      });
-    }
-    // Fallback loop check every 500ms
-    setInterval(() => {
-      if (heroPlayer && heroPlayer.getCurrentTime && heroPlayer.getCurrentTime() >= 90) {
-        heroPlayer.seekTo(74);
-        heroPlayer.playVideo();
-      }
-    }, 500);
-
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
