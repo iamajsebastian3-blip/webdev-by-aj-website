@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://www.youtube.com/iframe_api"></script>
   <style>
     /* ============================
        CSS RESET + CUSTOM PROPERTIES
@@ -1197,7 +1198,7 @@
       <div class="hero__video-bg">
         <iframe
           id="heroVideo"
-          src="https://www.youtube.com/embed/AZdlKvz5h0M?autoplay=1&mute=1&loop=1&playlist=AZdlKvz5h0M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=0&end=15"
+          src="https://www.youtube.com/embed/AZdlKvz5h0M?autoplay=1&mute=1&loop=1&playlist=AZdlKvz5h0M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=74&end=90&vq=hd1080"
           allow="autoplay; encrypted-media"
           allowfullscreen
         ></iframe>
@@ -1732,6 +1733,32 @@
   </footer>
 
   <script>
+    // YouTube IFrame API — force HD quality + loop 1:14–1:30
+    let heroPlayer;
+    function onYouTubeIframeAPIReady() {
+      heroPlayer = new YT.Player('heroVideo', {
+        events: {
+          onReady: (e) => {
+            e.target.setPlaybackQuality('hd1080');
+          },
+          onStateChange: (e) => {
+            // Loop back to 1:14 when reaching 1:30
+            if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED) {
+              e.target.seekTo(74);
+              e.target.playVideo();
+            }
+          }
+        }
+      });
+    }
+    // Fallback loop check every 500ms
+    setInterval(() => {
+      if (heroPlayer && heroPlayer.getCurrentTime && heroPlayer.getCurrentTime() >= 90) {
+        heroPlayer.seekTo(74);
+        heroPlayer.playVideo();
+      }
+    }, 500);
+
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
