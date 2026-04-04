@@ -888,18 +888,57 @@
       position: relative;
       overflow: hidden;
     }
-    .portfolio__crystal {
-      max-width: 50%;
-      max-height: 80%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 40px rgba(94, 23, 235, 0.4)) drop-shadow(0 0 80px rgba(245, 166, 35, 0.15));
-      animation: floatCrystal 6s ease-in-out infinite;
+    .portfolio__crystal-wrap {
       position: relative;
       z-index: 1;
+      animation: floatCrystal 6s ease-in-out infinite;
+    }
+    .portfolio__crystal-shape {
+      width: 280px; height: 280px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .portfolio__crystal-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: morphOrb 8s ease-in-out infinite;
+    }
+    .portfolio__crystal-orb:nth-child(1) {
+      width: 220px; height: 220px;
+      top: 20px; left: 30px;
+      background: linear-gradient(135deg, rgba(94, 23, 235, 0.7), rgba(155, 89, 247, 0.5));
+      animation-delay: 0s;
+    }
+    .portfolio__crystal-orb:nth-child(2) {
+      width: 200px; height: 200px;
+      top: 40px; left: 60px;
+      background: linear-gradient(225deg, rgba(59, 130, 246, 0.5), rgba(94, 23, 235, 0.6));
+      animation-delay: -2s;
+      mix-blend-mode: screen;
+    }
+    .portfolio__crystal-orb:nth-child(3) {
+      width: 180px; height: 180px;
+      top: 10px; left: 50px;
+      background: linear-gradient(45deg, rgba(245, 166, 35, 0.3), rgba(155, 89, 247, 0.4));
+      animation-delay: -4s;
+      mix-blend-mode: screen;
+    }
+    .portfolio__crystal-orb:nth-child(4) {
+      width: 100px; height: 100px;
+      top: 80px; left: 90px;
+      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+      animation-delay: -1s;
+    }
+    @keyframes morphOrb {
+      0%, 100% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; transform: rotate(0deg) scale(1); }
+      25% { border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%; transform: rotate(90deg) scale(1.05); }
+      50% { border-radius: 40% 50% 60% 50% / 60% 40% 50% 50%; transform: rotate(180deg) scale(0.95); }
+      75% { border-radius: 50% 40% 50% 60% / 50% 50% 40% 60%; transform: rotate(270deg) scale(1.03); }
     }
     @keyframes floatCrystal {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(2deg); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
     .portfolio__cta {
       text-align: center;
@@ -1670,10 +1709,17 @@
               <div class="portfolio__browser-dot"></div>
               <div class="portfolio__browser-dot"></div>
               <div class="portfolio__browser-dot"></div>
-              <div class="portfolio__browser-url">luxeresorthotel.com — Homepage</div>
+              <div class="portfolio__browser-url">WEBDEV BY AJ</div>
             </div>
             <div class="portfolio__browser-body">
-              <img class="portfolio__crystal" src="https://images.unsplash.com/photo-1696429175492-2aa00d5cc7f3?w=800&q=80" alt="Abstract 3D crystal render" />
+              <div class="portfolio__crystal-wrap">
+                <div class="portfolio__crystal-shape">
+                  <div class="portfolio__crystal-orb"></div>
+                  <div class="portfolio__crystal-orb"></div>
+                  <div class="portfolio__crystal-orb"></div>
+                  <div class="portfolio__crystal-orb"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
