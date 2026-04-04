@@ -1036,9 +1036,12 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
-    .portfolio__cta {
-      text-align: center;
-      margin-top: 2rem;
+    .portfolio__inside-cta {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
     }
 
     /* ============================
@@ -1194,14 +1197,16 @@
     .pricing-card:hover { transform: translateY(-4px); }
     .pricing-card--featured {
       box-shadow: 0 0 60px rgba(94, 23, 235, 0.2);
+      margin-top: 0.75rem;
     }
     .pricing-card--featured.gradient-border::before {
       background: linear-gradient(135deg, #5e17eb, #F5A623, #3b82f6);
     }
     .pricing-card__badge {
       position: absolute;
-      top: -12px; left: 50%;
+      top: -14px; left: 50%;
       transform: translateX(-50%);
+      z-index: 2;
       background: var(--color-accent);
       color: var(--color-bg);
       font-size: var(--text-xs);
@@ -1805,7 +1810,7 @@
               <div class="portfolio__browser-dot"></div>
               <div class="portfolio__browser-dot"></div>
               <div class="portfolio__browser-dot"></div>
-              <div class="portfolio__browser-url">WEBDEV BY AJ</div>
+              <div class="portfolio__browser-url">WEBDEV BY <span style="color: #F5A623; font-weight: 700;">AJ</span></div>
             </div>
             <div class="portfolio__browser-body">
               <div class="portfolio__particles">
@@ -1828,11 +1833,9 @@
                   <div class="crystal-facet"></div>
                 </div>
               </div>
+              <a href="gallery.html" class="btn btn--primary portfolio__inside-cta">See Our Work →</a>
             </div>
           </div>
-        </div>
-        <div class="portfolio__cta reveal">
-          <a href="gallery.html" class="btn btn--primary">See Our Work →</a>
         </div>
       </div>
     </section>
