@@ -185,15 +185,33 @@
     .tab-content.active { display: block; }
 
     /* Creative Cards (square 1:1, image-only) */
-    .gallery-card--creative .gallery-card__image { aspect-ratio: 1 / 1; }
+    .gallery-card--creative .gallery-card__image { aspect-ratio: 1 / 1; background: #07071A; }
     .gallery-card--creative .gallery-card__image::after { content: none; }
     .gallery-card--creative .gallery-card__image img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
+    .gallery-card--creative.gallery-card--cover .gallery-card__image img { object-fit: cover; }
     .gallery-grid--creative {
-      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    }
+    .creatives-section { margin-bottom: 3rem; }
+    .creatives-section__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .creatives-section__title:first-child { margin-top: 0; }
+    .creatives-section__count {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(245,166,35,0.1);
+      border: 1px solid rgba(245,166,35,0.2);
+      padding: 0.3rem 0.7rem; border-radius: 100px;
     }
 
     /* Footer */
@@ -697,48 +715,14 @@
 
         <!-- Creatives -->
         <div class="tab-content" id="tab-creatives">
-          <div class="gallery-grid gallery-grid--creative">
-            <a href="Images/Food%20Creatives/1.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/1.png" alt="Food creative 1" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Perfect Combo</div><div class="gallery-card__desc">Restaurant creative — burger and wings combo promo.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/2.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/2.png" alt="Food creative 2" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 2</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/3.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/3.png" alt="Food creative 3" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 3</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/4.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/4.png" alt="Food creative 4" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 4</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/5.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/5.png" alt="Food creative 5" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 5</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/6.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/6.png" alt="Food creative 6" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 6</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/7.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/7.png" alt="Food creative 7" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 7</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/8.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/8.png" alt="Food creative 8" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 8</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/9.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/9.png" alt="Food creative 9" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 9</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-            <a href="Images/Food%20Creatives/10.png" target="_blank" rel="noopener noreferrer" class="gallery-card gallery-card--creative reveal">
-              <div class="gallery-card__image"><img src="Images/Food%20Creatives/10.png" alt="Food creative 10" loading="lazy" decoding="async"></div>
-              <div class="gallery-card__body"><div class="gallery-card__category">Food Creatives</div><div class="gallery-card__title">Food Creative 10</div><div class="gallery-card__desc">Branded food creative for client campaign.</div><span class="gallery-card__link">View Full Size →</span></div>
-            </a>
-          </div>
+          <h3 class="creatives-section__title">Website Creatives <span class="creatives-section__count">10 items</span></h3>
+          <div class="gallery-grid gallery-grid--creative" id="gridWebsites"></div>
+
+          <h3 class="creatives-section__title">Food Creatives <span class="creatives-section__count">10 items</span></h3>
+          <div class="gallery-grid gallery-grid--creative" id="gridFood"></div>
+
+          <h3 class="creatives-section__title">Resort Ads <span class="creatives-section__count">8 items</span></h3>
+          <div class="gallery-grid gallery-grid--creative" id="gridResort"></div>
         </div>
 
         <!-- Main Portfolio -->
@@ -796,6 +780,30 @@
         activeTab.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
       });
     });
+
+    // Populate creative grids
+    (function buildCreativeGrids() {
+      const groups = [
+        { id: 'gridFood', cat: 'Food Creatives', basePath: 'Images/Food%20Creatives/', files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png'], cover: true },
+        { id: 'gridWebsites', cat: 'Website Creatives', basePath: 'Images/Websites/', files: ['1.png','2.png','3.png','4.png','5.png','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg'], cover: false },
+        { id: 'gridResort', cat: 'Resort Ads', basePath: 'Images/Resort%20Ads/', files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'], cover: false }
+      ];
+      groups.forEach(group => {
+        const grid = document.getElementById(group.id);
+        if (!grid) return;
+        group.files.forEach((file, i) => {
+          const url = group.basePath + file;
+          const card = document.createElement('a');
+          card.className = 'gallery-card gallery-card--creative reveal' + (group.cover ? ' gallery-card--cover' : '');
+          card.href = url;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+          card.innerHTML = '<div class="gallery-card__image"><img src="' + url + '" alt="' + group.cat + ' ' + (i + 1) + '" loading="lazy" decoding="async"></div>' +
+            '<div class="gallery-card__body"><div class="gallery-card__category">' + group.cat + '</div><div class="gallery-card__title">' + group.cat + ' ' + String(i + 1).padStart(2, '0') + '</div><span class="gallery-card__link">View Full Size →</span></div>';
+          grid.appendChild(card);
+        });
+      });
+    })();
 
     // Reveal
     const observer = new IntersectionObserver((entries) => {

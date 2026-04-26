@@ -697,7 +697,7 @@
     }
     .lightbox.is-open { display: flex; animation: lbFade 0.25s ease both; }
     @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
-    .lightbox__panel { max-width: 1100px; width: 100%; }
+    .lightbox__panel { max-width: 1280px; width: 100%; }
     .lightbox__header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 1.75rem;
@@ -720,17 +720,18 @@
     .lightbox__close:hover { background: var(--color-accent); color: #0a0a0a; transform: rotate(90deg); }
     .lightbox__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+      gap: 1.25rem;
     }
     .lightbox__item {
       display: block; aspect-ratio: 1/1; border-radius: 12px; overflow: hidden;
-      background: #0d0d24;
+      background: #07071A;
       border: 1px solid rgba(255,255,255,0.06);
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
     .lightbox__item:hover { transform: translateY(-4px); border-color: rgba(245,166,35,0.4); }
-    .lightbox__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lightbox__item img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .lightbox--cover .lightbox__item img { object-fit: cover; }
     body.lb-locked { overflow: hidden; }
 
     /* CONNECT SECTION (FB + TikTok) */
@@ -1924,18 +1925,31 @@
                 </div>
               </div>
             </button>
+            <button type="button" class="showcase__card creative-card" data-category="websites" aria-label="Open Website Creatives">
+              <div class="category-card">
+                <div class="category-card__stack">
+                  <div class="category-card__layer category-card__layer--back"><img data-src="Images/Websites/8.jpg" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--mid"><img data-src="Images/Websites/7.jpg" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--front"><img data-src="Images/Websites/6.jpg" alt="Website creative preview" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="category-card__body">
+                  <span class="category-card__count">10 Creatives</span>
+                  <span class="category-card__title">Website Creatives</span>
+                  <span class="category-card__hint">Click to preview all</span>
+                </div>
+              </div>
+            </button>
             <button type="button" class="showcase__card creative-card" data-category="resort" aria-label="Open Resort Ads">
               <div class="category-card">
                 <div class="category-card__stack">
-                  <div class="category-card__empty">
-                    <div class="category-card__empty-icon">🏝️</div>
-                    <div>Coming Soon</div>
-                  </div>
+                  <div class="category-card__layer category-card__layer--back"><img data-src="Images/Resort%20Ads/3.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--mid"><img data-src="Images/Resort%20Ads/2.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--front"><img data-src="Images/Resort%20Ads/1.png" alt="Resort ad preview" loading="lazy" decoding="async"></div>
                 </div>
                 <div class="category-card__body">
-                  <span class="category-card__count">In Production</span>
+                  <span class="category-card__count">8 Creatives</span>
                   <span class="category-card__title">Resort Ads</span>
-                  <span class="category-card__hint">New creatives dropping soon</span>
+                  <span class="category-card__hint">Click to preview all</span>
                 </div>
               </div>
             </button>
@@ -2778,11 +2792,17 @@
           basePath: 'Images/Food%20Creatives/',
           files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png']
         },
+        websites: {
+          name: 'Website Creatives',
+          tag: 'Category',
+          basePath: 'Images/Websites/',
+          files: ['1.png','2.png','3.png','4.png','5.png','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg']
+        },
         resort: {
           name: 'Resort Ads',
-          tag: 'Coming Soon',
-          basePath: '',
-          files: []
+          tag: 'Category',
+          basePath: 'Images/Resort%20Ads/',
+          files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png']
         }
       };
       const lb = document.getElementById('lightbox');
