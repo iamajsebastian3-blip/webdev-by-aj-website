@@ -753,8 +753,8 @@
     }
     .connect__btn--fb { background: linear-gradient(135deg, #0866ff, #1877f2); color: #fff; box-shadow: 0 6px 24px rgba(8,102,255,0.35); }
     .connect__btn--fb:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(8,102,255,0.5); }
-    .connect__btn--tt { background: #0a0a0a; color: #fff; border: 1px solid rgba(255,255,255,0.18); }
-    .connect__btn--tt:hover { background: linear-gradient(90deg, #25F4EE 0%, #FE2C55 100%); border-color: transparent; transform: translateY(-3px); }
+    .connect__btn--tt { background: linear-gradient(135deg, #5e17eb, #9b59f7); color: #fff; box-shadow: 0 6px 24px rgba(94,23,235,0.4); }
+    .connect__btn--tt:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(94,23,235,0.55); }
     .connect__btn-icon { width: 24px; height: 24px; }
     @media (max-width: 480px) { .connect__btn { min-width: 100%; padding: 0.9rem 1.25rem; font-size: 0.95rem; } }
     @media (max-width: 768px) {
@@ -1953,6 +1953,20 @@
                 </div>
               </div>
             </button>
+            <button type="button" class="showcase__card creative-card" data-category="promotion" aria-label="Open Promotion Creatives">
+              <div class="category-card">
+                <div class="category-card__stack">
+                  <div class="category-card__layer category-card__layer--back"><img data-src="Images/Promotion/4.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--mid"><img data-src="Images/Promotion/3.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--front"><img data-src="Images/Promotion/1.png" alt="Promotion preview" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="category-card__body">
+                  <span class="category-card__count">4 Creatives</span>
+                  <span class="category-card__title">Promotion</span>
+                  <span class="category-card__hint">Click to preview all</span>
+                </div>
+              </div>
+            </button>
           </div>
         </div>
         <div class="showcase__dots" id="creativeDots"></div>
@@ -2803,6 +2817,12 @@
           tag: 'Category',
           basePath: 'Images/Resort%20Ads/',
           files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png']
+        },
+        promotion: {
+          name: 'Promotion',
+          tag: 'Category',
+          basePath: 'Images/Promotion/',
+          files: ['1.png','3.png','4.png','5.png']
         }
       };
       const lb = document.getElementById('lightbox');

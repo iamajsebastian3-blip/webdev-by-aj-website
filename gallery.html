@@ -723,6 +723,9 @@
 
           <h3 class="creatives-section__title">Resort Ads <span class="creatives-section__count">8 items</span></h3>
           <div class="gallery-grid gallery-grid--creative" id="gridResort"></div>
+
+          <h3 class="creatives-section__title">Promotion <span class="creatives-section__count">4 items</span></h3>
+          <div class="gallery-grid gallery-grid--creative" id="gridPromotion"></div>
         </div>
 
         <!-- Main Portfolio -->
@@ -786,7 +789,8 @@
       const groups = [
         { id: 'gridFood', cat: 'Food Creatives', basePath: 'Images/Food%20Creatives/', files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png'], cover: true },
         { id: 'gridWebsites', cat: 'Website Creatives', basePath: 'Images/Websites/', files: ['1.png','2.png','3.png','4.png','5.png','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg'], cover: false },
-        { id: 'gridResort', cat: 'Resort Ads', basePath: 'Images/Resort%20Ads/', files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'], cover: false }
+        { id: 'gridResort', cat: 'Resort Ads', basePath: 'Images/Resort%20Ads/', files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'], cover: false },
+        { id: 'gridPromotion', cat: 'Promotion', basePath: 'Images/Promotion/', files: ['1.png','3.png','4.png','5.png'], cover: false }
       ];
       groups.forEach(group => {
         const grid = document.getElementById(group.id);
