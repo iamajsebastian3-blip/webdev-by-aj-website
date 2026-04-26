@@ -607,21 +607,131 @@
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-    /* Creative Content Cards — square (1:1), real images */
-    .showcase--creative .showcase__card { width: 460px; height: 460px; margin: -230px 0 0 -230px; }
-    .showcase--creative .showcase__stage { height: 500px; }
-    .showcase--creative .creative-card__media {
-      flex: 1; position: relative; overflow: hidden;
+    /* Creative Content — Category Cards (square, stacked preview effect) */
+    .showcase--creative .showcase__card { width: 460px; height: 540px; margin: -270px 0 0 -230px; background: transparent; border: 0; box-shadow: none; }
+    .showcase--creative .showcase__stage { height: 580px; }
+    .showcase--creative .showcase__card[data-pos="0"] { box-shadow: none; }
+    .showcase--creative .showcase__chrome { display: none; }
+    .category-card {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      background: var(--color-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .showcase__card[data-pos="0"] .category-card { border-color: rgba(245,166,35,0.35); box-shadow: 0 35px 100px rgba(94,23,235,0.25); }
+    .category-card__stack {
+      position: relative;
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(94,23,235,0.08), rgba(245,166,35,0.04));
+    }
+    .category-card__layer {
+      position: absolute;
+      width: 70%; aspect-ratio: 1/1;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
       background: #0d0d24;
     }
-    .showcase--creative .creative-card__media img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .category-card__layer img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .category-card__layer--back { transform: rotate(-8deg) translate(-22%, -4%); opacity: 0.55; filter: blur(0.5px); }
+    .category-card__layer--mid { transform: rotate(6deg) translate(20%, -2%); opacity: 0.75; }
+    .category-card__layer--front { transform: rotate(0deg) translateY(8%); z-index: 3; box-shadow: 0 22px 60px rgba(0,0,0,0.7); }
+    .category-card__empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
     }
-    .showcase--creative .showcase__chrome { display: none; }
+    .category-card__empty-icon { font-size: 2.5rem; opacity: 0.4; }
+    .category-card__body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      display: flex; flex-direction: column;
+      gap: 0.4rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .category-card__count {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .category-card__title { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--color-text); }
+    .category-card__hint {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .category-card__hint::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-accent);
+      animation: pulse 2s ease infinite;
+    }
     @media (max-width: 768px) {
-      .showcase--creative .showcase__card { width: 320px; height: 320px; margin: -160px 0 0 -160px; }
-      .showcase--creative .showcase__stage { height: 360px; }
+      .showcase--creative .showcase__card { width: 300px; height: 400px; margin: -200px 0 0 -150px; }
+      .showcase--creative .showcase__stage { height: 440px; }
+      .category-card__title { font-size: 1.15rem; }
+      .category-card__stack { padding: 1rem; }
     }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(7,7,26,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 5rem 1.5rem 3rem;
+    }
+    .lightbox.is-open { display: flex; animation: lbFade 0.25s ease both; }
+    @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+    .lightbox__panel { max-width: 1100px; width: 100%; }
+    .lightbox__header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.75rem;
+      gap: 1rem;
+    }
+    .lightbox__title-wrap { display: flex; flex-direction: column; gap: 0.25rem; }
+    .lightbox__category { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent); }
+    .lightbox__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.25rem); }
+    .lightbox__close {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--color-text);
+      font-size: 1.5rem; line-height: 1;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .lightbox__close:hover { background: var(--color-accent); color: #0a0a0a; transform: rotate(90deg); }
+    .lightbox__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+      gap: 1rem;
+    }
+    .lightbox__item {
+      display: block; aspect-ratio: 1/1; border-radius: 12px; overflow: hidden;
+      background: #0d0d24;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .lightbox__item:hover { transform: translateY(-4px); border-color: rgba(245,166,35,0.4); }
+    .lightbox__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    body.lb-locked { overflow: hidden; }
 
     /* CONNECT SECTION (FB + TikTok) */
     .connect { padding: 5rem 0 4rem; position: relative; }
@@ -1800,33 +1910,35 @@
           <button class="showcase__nav showcase__nav--prev" id="creativePrev" aria-label="Previous">‹</button>
           <button class="showcase__nav showcase__nav--next" id="creativeNext" aria-label="Next">›</button>
           <div class="showcase__track" id="creativeTrack">
-            <a href="Pictures/1.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/1.png" alt="Creative content 1" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/2.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/2.png" alt="Creative content 2" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/3.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/3.png" alt="Creative content 3" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/4.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/4.png" alt="Creative content 4" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/5.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/5.png" alt="Creative content 5" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/6.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/6.png" alt="Creative content 6" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/7.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/7.png" alt="Creative content 7" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/8.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/8.png" alt="Creative content 8" loading="lazy" decoding="async"></div>
-            </a>
-            <a href="Pictures/9.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
-              <div class="creative-card__media"><img data-src="Pictures/9.png" alt="Creative content 9" loading="lazy" decoding="async"></div>
-            </a>
+            <button type="button" class="showcase__card creative-card" data-category="food" aria-label="Open Food Creatives">
+              <div class="category-card">
+                <div class="category-card__stack">
+                  <div class="category-card__layer category-card__layer--back"><img data-src="Images/Food%20Creatives/3.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--mid"><img data-src="Images/Food%20Creatives/2.png" alt="" loading="lazy" decoding="async"></div>
+                  <div class="category-card__layer category-card__layer--front"><img data-src="Images/Food%20Creatives/1.png" alt="Food creative preview" loading="lazy" decoding="async"></div>
+                </div>
+                <div class="category-card__body">
+                  <span class="category-card__count">10 Creatives</span>
+                  <span class="category-card__title">Food Creatives</span>
+                  <span class="category-card__hint">Click to preview all</span>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="showcase__card creative-card" data-category="resort" aria-label="Open Resort Ads">
+              <div class="category-card">
+                <div class="category-card__stack">
+                  <div class="category-card__empty">
+                    <div class="category-card__empty-icon">🏝️</div>
+                    <div>Coming Soon</div>
+                  </div>
+                </div>
+                <div class="category-card__body">
+                  <span class="category-card__count">In Production</span>
+                  <span class="category-card__title">Resort Ads</span>
+                  <span class="category-card__hint">New creatives dropping soon</span>
+                </div>
+              </div>
+            </button>
           </div>
         </div>
         <div class="showcase__dots" id="creativeDots"></div>
@@ -2406,6 +2518,20 @@
 
   </main>
 
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" hidden>
+    <div class="lightbox__panel">
+      <div class="lightbox__header">
+        <div class="lightbox__title-wrap">
+          <span class="lightbox__category" id="lightboxCategory"></span>
+          <h2 class="lightbox__title" id="lightboxTitle"></h2>
+        </div>
+        <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Close">×</button>
+      </div>
+      <div class="lightbox__grid" id="lightboxGrid"></div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -2642,6 +2768,78 @@
       prevId: 'creativePrev', nextId: 'creativeNext', stageId: 'creativeStage',
       lazyIframe: true
     });
+
+    // Creative category lightbox
+    (function initLightbox() {
+      const categories = {
+        food: {
+          name: 'Food Creatives',
+          tag: 'Category',
+          basePath: 'Images/Food%20Creatives/',
+          files: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png']
+        },
+        resort: {
+          name: 'Resort Ads',
+          tag: 'Coming Soon',
+          basePath: '',
+          files: []
+        }
+      };
+      const lb = document.getElementById('lightbox');
+      const lbGrid = document.getElementById('lightboxGrid');
+      const lbTitle = document.getElementById('lightboxTitle');
+      const lbCategory = document.getElementById('lightboxCategory');
+      const lbClose = document.getElementById('lightboxClose');
+
+      function open(key) {
+        const cat = categories[key];
+        if (!cat) return;
+        lbTitle.textContent = cat.name;
+        lbCategory.textContent = cat.tag;
+        lbGrid.innerHTML = '';
+        if (cat.files.length === 0) {
+          const empty = document.createElement('div');
+          empty.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 4rem 2rem; color: var(--color-text-muted);';
+          empty.innerHTML = '<div style="font-size: 3rem; opacity: 0.4; margin-bottom: 1rem;">🏝️</div><p>New ' + cat.name.toLowerCase() + ' are dropping soon — check back later.</p>';
+          lbGrid.appendChild(empty);
+        } else {
+          cat.files.forEach((file, i) => {
+            const url = cat.basePath + file;
+            const a = document.createElement('a');
+            a.className = 'lightbox__item';
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            const img = document.createElement('img');
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.alt = cat.name + ' ' + (i + 1);
+            img.src = url;
+            a.appendChild(img);
+            lbGrid.appendChild(a);
+          });
+        }
+        lb.hidden = false;
+        requestAnimationFrame(() => lb.classList.add('is-open'));
+        document.body.classList.add('lb-locked');
+      }
+
+      function close() {
+        lb.classList.remove('is-open');
+        document.body.classList.remove('lb-locked');
+        setTimeout(() => { lb.hidden = true; lbGrid.innerHTML = ''; }, 250);
+      }
+
+      document.querySelectorAll('[data-category]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          open(btn.dataset.category);
+        });
+      });
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
   </script>
 </body>
 </html>
