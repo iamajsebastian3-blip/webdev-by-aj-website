@@ -183,6 +183,8 @@
     /* Tab Content */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
+    .gallery-grid { contain: layout style; }
+    .gallery-card { content-visibility: auto; contain-intrinsic-size: 1px 420px; }
 
     /* Creative Cards (square 1:1, image-only) */
     .gallery-card--creative .gallery-card__image { aspect-ratio: 1 / 1; background: #07071A; }
@@ -222,7 +224,10 @@
 
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
     @media (max-width: 768px) {
       .nav__links { display: none; }
       .nav__hamburger { display: flex; }

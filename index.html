@@ -1705,6 +1705,23 @@
     }
 
     /* ============================
+       PERFORMANCE — defer offscreen rendering
+       ============================ */
+    .industries,
+    .problem,
+    .calculator,
+    .services,
+    .benefits,
+    .pricing,
+    .faq,
+    .final-cta,
+    .connect,
+    .showcase {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 800px;
+    }
+
+    /* ============================
        RESPONSIVE
        ============================ */
     @media (max-width: 1024px) {
@@ -1732,6 +1749,21 @@
       .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer__bottom { flex-direction: column; gap: 1rem; text-align: center; }
       .testimonial-card { width: 300px; }
+
+      /* Mobile perf cuts: kill expensive backgrounds and animations */
+      .hero__video-wrap { display: none; }
+      .hero__icon:nth-child(n+6) { display: none; }
+      .hero__glow-1, .hero__glow-2, .glow { filter: blur(60px); opacity: 0.5; }
+      .hero-stats__inner { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(94,23,235,0.12); }
+      .nav { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+      .floating-card, .glass { backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .industries__track { animation-duration: 35s; }
+      .lightbox { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__video-wrap, .hero__icons { display: none; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
@@ -1770,11 +1802,7 @@
 
     <!-- HERO -->
     <section class="hero" id="hero">
-      <div class="hero__video-wrap">
-        <video autoplay muted loop playsinline>
-          <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-keyboard-5765/1080p.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <div class="hero__video-wrap" id="heroVideoWrap"></div>
       <div class="hero__overlay"></div>
       <div class="glow glow--purple hero__glow-1"></div>
       <div class="glow glow--accent hero__glow-2"></div>
@@ -2697,6 +2725,31 @@
     dealValueInput.addEventListener('input', updateCalculator);
     updateCalculator();
 
+    // Inject hero video only on desktop and after idle — avoids blocking LCP / mobile bandwidth
+    (function lazyHeroVideo() {
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const conn = navigator.connection;
+      if (conn && (conn.saveData || /(2g|slow-2g)/.test(conn.effectiveType || ''))) return;
+      const wrap = document.getElementById('heroVideoWrap');
+      if (!wrap) return;
+      const inject = () => {
+        const v = document.createElement('video');
+        v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true;
+        v.preload = 'auto';
+        v.innerHTML = '<source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-keyboard-5765/1080p.mp4" type="video/mp4">';
+        wrap.appendChild(v);
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(inject, { timeout: 1500 });
+      else setTimeout(inject, 800);
+    })();
+
+    // Pause all rAF/intervals when tab hidden
+    const carouselRegistry = [];
+    document.addEventListener('visibilitychange', () => {
+      carouselRegistry.forEach(c => document.hidden ? c.pause() : c.resumeIfVisible());
+    });
+
     // Generic 3D coverflow carousel — supports lazy iframe loading + section gating
     function initShowcase(opts) {
       const track = document.getElementById(opts.trackId);
@@ -2758,29 +2811,37 @@
       prev.addEventListener('click', () => { go(-1); restart(); });
       next.addEventListener('click', () => { go(1); restart(); });
 
-      function start() { if (timer) return; timer = setInterval(() => go(1), 5000); }
+      let inViewport = false;
+      let hovering = false;
+      function shouldRun() { return started && inViewport && !hovering && !document.hidden; }
+      function start() { if (timer) return; if (!shouldRun()) return; timer = setInterval(() => go(1), 5000); }
       function stop() { if (timer) { clearInterval(timer); timer = null; } }
       function restart() { stop(); start(); }
-      stage.addEventListener('mouseenter', stop);
-      stage.addEventListener('mouseleave', start);
+      stage.addEventListener('mouseenter', () => { hovering = true; stop(); });
+      stage.addEventListener('mouseleave', () => { hovering = false; start(); });
+
+      carouselRegistry.push({
+        pause: stop,
+        resumeIfVisible: () => { if (shouldRun()) start(); }
+      });
 
       render();
 
-      // Gate iframe loading + auto-rotation behind viewport visibility
-      if (lazyLoad && 'IntersectionObserver' in window) {
+      if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting && !started) {
-              started = true;
-              render();
+            inViewport = entry.isIntersecting;
+            if (inViewport) {
+              if (!started) { started = true; render(); }
               start();
-              io.disconnect();
+            } else {
+              stop();
             }
           });
-        }, { rootMargin: '200px 0px' });
+        }, { rootMargin: '150px 0px' });
         io.observe(stage);
       } else {
-        started = true;
+        started = true; inViewport = true;
         render();
         start();
       }
