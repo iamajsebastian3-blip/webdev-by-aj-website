@@ -607,27 +607,20 @@
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-    /* Creative Content Cards (no iframe — image placeholders) */
-    .showcase--creative .showcase__card { aspect-ratio: 9 / 16; width: 280px; height: 500px; margin: -250px 0 0 -140px; }
-    .showcase--creative .showcase__stage { height: 540px; }
+    /* Creative Content Cards — square (1:1), real images */
+    .showcase--creative .showcase__card { width: 460px; height: 460px; margin: -230px 0 0 -230px; }
+    .showcase--creative .showcase__stage { height: 500px; }
     .showcase--creative .creative-card__media {
       flex: 1; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.92); font-weight: 700;
+      background: #0d0d24;
     }
-    .showcase--creative .creative-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .showcase--creative .creative-card__placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 0.5rem;
+    .showcase--creative .creative-card__media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .showcase--creative .creative-card__placeholder-num { font-size: 0.75rem; letter-spacing: 0.2em; opacity: 0.7; text-transform: uppercase; }
-    .showcase--creative .creative-card__placeholder-title { font-size: 1.5rem; font-weight: 800; }
-    .showcase--creative .creative-card__placeholder-sub { font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem; }
     .showcase--creative .showcase__chrome { display: none; }
     @media (max-width: 768px) {
-      .showcase--creative .showcase__card { width: 220px; height: 390px; margin: -195px 0 0 -110px; }
-      .showcase--creative .showcase__stage { height: 430px; }
+      .showcase--creative .showcase__card { width: 320px; height: 320px; margin: -160px 0 0 -160px; }
+      .showcase--creative .showcase__stage { height: 360px; }
     }
 
     /* CONNECT SECTION (FB + TikTok) */
@@ -1807,85 +1800,32 @@
           <button class="showcase__nav showcase__nav--prev" id="creativePrev" aria-label="Previous">‹</button>
           <button class="showcase__nav showcase__nav--next" id="creativeNext" aria-label="Next">›</button>
           <div class="showcase__track" id="creativeTrack">
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #5e17eb 0%, #9b59f7 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 01</div>
-                  <div class="creative-card__placeholder-title">FB Ad Creative</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Facebook Ad</span><div class="showcase__caption-title">Product Launch Creative</div></div>
+            <a href="Pictures/1.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/1.png" alt="Creative content 1" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #f5a623 0%, #ff6b35 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 02</div>
-                  <div class="creative-card__placeholder-title">IG Reel</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Instagram Reel</span><div class="showcase__caption-title">Brand Story Reel</div></div>
+            <a href="Pictures/2.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/2.png" alt="Creative content 2" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #0d8be6 0%, #25F4EE 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 03</div>
-                  <div class="creative-card__placeholder-title">TikTok Hook</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">TikTok</span><div class="showcase__caption-title">Hook Video Edit</div></div>
+            <a href="Pictures/3.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/3.png" alt="Creative content 3" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #FE2C55 0%, #C13584 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 04</div>
-                  <div class="creative-card__placeholder-title">Story Graphic</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Story</span><div class="showcase__caption-title">Promo Story Set</div></div>
+            <a href="Pictures/4.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/4.png" alt="Creative content 4" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #06b6d4 0%, #5e17eb 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 05</div>
-                  <div class="creative-card__placeholder-title">Carousel Post</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Carousel</span><div class="showcase__caption-title">Educational Carousel</div></div>
+            <a href="Pictures/5.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/5.png" alt="Creative content 5" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #ff6b35 0%, #FE2C55 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 06</div>
-                  <div class="creative-card__placeholder-title">Brand Banner</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Banner</span><div class="showcase__caption-title">Marketing Banner</div></div>
+            <a href="Pictures/6.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/6.png" alt="Creative content 6" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #22c55e 0%, #f5a623 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 07</div>
-                  <div class="creative-card__placeholder-title">Promo Reel</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Reel</span><div class="showcase__caption-title">Service Promo Reel</div></div>
+            <a href="Pictures/7.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/7.png" alt="Creative content 7" loading="lazy" decoding="async"></div>
             </a>
-            <a href="#" class="showcase__card creative-card">
-              <div class="creative-card__media" style="background: linear-gradient(135deg, #9b59f7 0%, #FE2C55 100%);">
-                <div class="creative-card__placeholder">
-                  <div class="creative-card__placeholder-num">Creative · 08</div>
-                  <div class="creative-card__placeholder-title">Testimonial Card</div>
-                  <div class="creative-card__placeholder-sub">Replace with your image</div>
-                </div>
-              </div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Social Post</span><div class="showcase__caption-title">Testimonial Graphic</div></div>
+            <a href="Pictures/8.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/8.png" alt="Creative content 8" loading="lazy" decoding="async"></div>
+            </a>
+            <a href="Pictures/9.png" target="_blank" rel="noopener noreferrer" class="showcase__card creative-card">
+              <div class="creative-card__media"><img data-src="Pictures/9.png" alt="Creative content 9" loading="lazy" decoding="async"></div>
             </a>
           </div>
         </div>
@@ -2628,15 +2568,17 @@
         dotsWrap.appendChild(dot);
       });
 
-      function loadIframeFor(card) {
-        const iframe = card.querySelector('iframe[data-src]');
-        if (!iframe || iframe.getAttribute('src')) return;
-        const viewport = card.querySelector('.showcase__viewport');
-        if (viewport) viewport.classList.add('is-loading');
-        iframe.addEventListener('load', () => {
-          if (viewport) viewport.classList.remove('is-loading');
-        }, { once: true });
-        iframe.setAttribute('src', iframe.getAttribute('data-src'));
+      function loadMediaFor(card) {
+        const targets = card.querySelectorAll('iframe[data-src], img[data-src]');
+        targets.forEach(el => {
+          if (el.getAttribute('src')) return;
+          const viewport = card.querySelector('.showcase__viewport');
+          if (viewport) viewport.classList.add('is-loading');
+          el.addEventListener('load', () => {
+            if (viewport) viewport.classList.remove('is-loading');
+          }, { once: true });
+          el.setAttribute('src', el.getAttribute('data-src'));
+        });
       }
 
       function render() {
@@ -2650,7 +2592,7 @@
             card.dataset.pos = 'hidden';
           }
           if (lazyLoad && started && Math.abs(diff) <= visibleRange) {
-            loadIframeFor(card);
+            loadMediaFor(card);
           }
         });
         dotsWrap.querySelectorAll('.showcase__dot-btn').forEach((d, i) => {
@@ -2698,7 +2640,7 @@
     initShowcase({
       trackId: 'creativeTrack', dotsId: 'creativeDots',
       prevId: 'creativePrev', nextId: 'creativeNext', stageId: 'creativeStage',
-      lazyIframe: false
+      lazyIframe: true
     });
   </script>
 </body>
