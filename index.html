@@ -598,6 +598,16 @@
       transition: all 0.25s ease;
     }
     .showcase__dot-btn.is-active { background: var(--color-accent); width: 28px; border-radius: 4px; }
+    .showcase__placeholder {
+      max-width: 560px; margin: 2rem auto 0; padding: 4rem 2rem;
+      text-align: center;
+      background: var(--color-card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+    .showcase__placeholder-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.6; }
+    .showcase__placeholder-title { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .showcase__placeholder-desc { color: var(--color-text-muted); margin-bottom: 1.5rem; }
     .showcase__viewport iframe[data-src]:not([src]) { display: none; }
     .showcase__viewport.is-loading::before {
       content: ''; position: absolute; inset: 0;
@@ -1855,75 +1865,18 @@
         <div class="showcase__header reveal">
           <div class="section-label">Live Projects</div>
           <h2 class="section-title">Premium Websites We've Built.</h2>
-          <p class="section-subtitle" style="margin: 0 auto;">Real websites, live for real businesses — click any card to view the live site.</p>
+          <p class="section-subtitle" style="margin: 0 auto;">Real websites, live for real businesses.</p>
         </div>
-        <div class="showcase__stage" id="showcaseStage">
-          <button class="showcase__nav showcase__nav--prev" id="showcasePrev" aria-label="Previous">‹</button>
-          <button class="showcase__nav showcase__nav--next" id="showcaseNext" aria-label="Next">›</button>
-          <div class="showcase__track" id="showcaseTrack">
-            <a href="https://casa-lume-hotel.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://casa-lume-hotel.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">casa-lume-hotel.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://casa-lume-hotel.vercel.app/?v=1" title="Casa Lume Hotel" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Luxury Hotel</span><div class="showcase__caption-title">Casa Lume Hotel</div></div>
-            </a>
-            <a href="https://sierra-bloom-hotel.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://sierra-bloom-hotel.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">sierra-bloom-hotel.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://sierra-bloom-hotel.vercel.app/?v=1" title="Sierra Bloom Hotel" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Mountain Resort</span><div class="showcase__caption-title">Sierra Bloom Hotel</div></div>
-            </a>
-            <a href="https://aviora-coast.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://aviora-coast.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">aviora-coast.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://aviora-coast.vercel.app/?v=1" title="Aviora Coast" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Coastal Resort</span><div class="showcase__caption-title">Aviora Coast</div></div>
-            </a>
-            <a href="https://merbau-beach-resort.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://merbau-beach-resort.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">merbau-beach-resort.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://merbau-beach-resort.vercel.app/?v=1" title="Merbau Beach Resort" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Beach Resort</span><div class="showcase__caption-title">Merbau Beach Resort</div></div>
-            </a>
-            <a href="https://lumiere-skin-clinic.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://lumiere-skin-clinic.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">lumiere-skin-clinic.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://lumiere-skin-clinic.vercel.app/?v=1" title="Lumière Skin Clinic" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Skin Clinic</span><div class="showcase__caption-title">Lumière Skin Clinic</div></div>
-            </a>
-            <a href="https://dermaglow-clinic.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://dermaglow-clinic.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">dermaglow-clinic.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://dermaglow-clinic.vercel.app/?v=1" title="DermaGlow Clinic" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Dermatology</span><div class="showcase__caption-title">DermaGlow Clinic</div></div>
-            </a>
-            <a href="https://smilecraft-dental-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://smilecraft-dental-ten.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">smilecraft-dental-ten.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://smilecraft-dental-ten.vercel.app/?v=1" title="SmileCraft Dental" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Dental Clinic</span><div class="showcase__caption-title">SmileCraft Dental</div></div>
-            </a>
-            <a href="https://the-cozy-cup-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://the-cozy-cup-one.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">the-cozy-cup-one.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://the-cozy-cup-one.vercel.app/?v=1" title="The Cozy Cup" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Café</span><div class="showcase__caption-title">The Cozy Cup</div></div>
-            </a>
-            <a href="https://amberbrew-cafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://amberbrew-cafe.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">amberbrew-cafe.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://amberbrew-cafe.vercel.app/?v=1" title="AmberBrew Café" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Specialty Café</span><div class="showcase__caption-title">AmberBrew Café</div></div>
-            </a>
-            <a href="https://alpharep-coaching.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://alpharep-coaching.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">alpharep-coaching.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://alpharep-coaching.vercel.app/?v=1" title="AlphaRep Coaching" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Coaching Brand</span><div class="showcase__caption-title">AlphaRep Coaching</div></div>
-            </a>
-            <a href="https://coach-gym-funnel.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://coach-gym-funnel.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">coach-gym-funnel.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://coach-gym-funnel.vercel.app/?v=1" title="Coach Gym" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">Fitness Gym</span><div class="showcase__caption-title">Coach Gym</div></div>
-            </a>
-            <a href="https://aj-bactad-ecommerce.vercel.app/" target="_blank" rel="noopener noreferrer" class="showcase__card" data-src="https://aj-bactad-ecommerce.vercel.app/">
-              <div class="showcase__chrome"><span class="showcase__dot showcase__dot--r"></span><span class="showcase__dot showcase__dot--y"></span><span class="showcase__dot showcase__dot--g"></span><span class="showcase__url">aj-bactad-ecommerce.vercel.app</span></div>
-              <div class="showcase__viewport"><iframe data-src="https://aj-bactad-ecommerce.vercel.app/?v=1" title="E-Commerce Store" loading="lazy"></iframe></div>
-              <div class="showcase__caption"><span class="showcase__caption-tag">E-Commerce</span><div class="showcase__caption-title">E-Commerce Store</div></div>
-            </a>
+        <div class="showcase__stage" id="showcaseStage" style="height: auto;">
+          <div class="showcase__placeholder">
+            <div class="showcase__placeholder-icon">⏳</div>
+            <h3 class="showcase__placeholder-title">Refreshing our portfolio</h3>
+            <p class="showcase__placeholder-desc">New live previews dropping shortly. In the meantime, check out our gallery.</p>
+            <a href="gallery.html" class="btn btn--primary">Browse Gallery</a>
           </div>
+          <div class="showcase__track" id="showcaseTrack" hidden></div>
         </div>
-        <div class="showcase__dots" id="showcaseDots"></div>
+        <div class="showcase__dots" id="showcaseDots" hidden></div>
       </div>
     </section>
 
@@ -2755,6 +2708,7 @@
       const track = document.getElementById(opts.trackId);
       if (!track) return;
       const cards = Array.from(track.querySelectorAll('.showcase__card'));
+      if (!cards.length) return;
       const dotsWrap = document.getElementById(opts.dotsId);
       const prev = document.getElementById(opts.prevId);
       const next = document.getElementById(opts.nextId);
